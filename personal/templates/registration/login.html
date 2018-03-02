@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<meta charset="utf-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static '/personal/css/bootstrap.min.css' %}">
+</head>
+<body>
+	<div class='container-fluid'>
+		<div class='row'>
+			<div class='col-sm-2'>
+				<center>
+					<img src="/static/personal/pic.jpg" alt="picture" class="img-thumbnail">
+				</center>				
+			</div>
+			<div class='col-sm-8'>
+				<center>
+					<h3>Progamming, Teaching, Entrepreneurship</h3>
+				</center>
+			</div>
+			{% block content1 %}
+				<div class="col-sm-2">
+					<center>
+						<a href="/register" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Register</a>
+					</center>
+				</div>
+			{% endblock %}
+		</div>	
+	</div>
+		<div class="container">
+			<div class="text-center">
+			{% block content2 %}
+				<form method="post" class="form-signin" action="{% url 'login' %}">
+					{% if form.errors %}
+						<p>There's something wrong</p>
+					{% endif %}
+					{% csrf_token %}
+		      		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+		      		<h2>Username: {{form.username}}</h2>
+		      		<h2>Password: {{form.password}}</h2>
+		      		<p><button class="btn btn-lg btn-primary" type="submit" value="login">Login</button></p>
+		    	</form>
+		    {% endblock %}
+	    	</div>
+    </div>
+</body>
+</html>

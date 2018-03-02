@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Harrison Kinsley</title>
+	<meta charset="utf-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static '/personal/css/bootstrap.min.css' %}">
+</head>
+<body>
+	<div class='container-fluid'>
+		<div class='row'>
+			<div class='col-sm-2'>
+				<center>
+					<img src="/static/personal/pic.jpg" alt="picture" class="img-thumbnail">
+				</center>				
+			</div>
+			<div class='col-sm-8'>
+				<center>
+					<h3>Progamming, Teaching, Entrepreneurship</h3>
+				</center>
+			</div>
+			<div class="col-sm-2">
+				<center>
+					{% if user.is_authenticated %}
+						<p>Logged in as {{user.username}}</p>
+						<a href="/logout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Logout</a>
+					{% else %}
+						<p>You are not logged in</p>
+						<a href="/login" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Login</a>
+					{% endif %}
+				</center>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-sm-2">
+				<ul class="nav flex-column">
+  					<li class="nav-item">
+    					<a class="nav-link active" href="/">Home</a>
+  					</li>
+  					<li class="nav-item">
+    					<a class="nav-link" href="/blog">Blog</a>
+  					</li>
+  					<li class="nav-item">
+    					<a class="nav-link" href="/contact">Contact</a>
+  					</li>
+				</ul>
+			</div>
+			<div class='col-sm-10'>
+				<div class='container-fluid'>
+					{% block content %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>	
+	</div>
+	
+</body>
+</html>
